@@ -1,4 +1,3 @@
-#!/bin/bash
 # LT2D Secure, Simple and Scalable Video Spaces
 
 ### LT2D is an open-source (AGPL) WebRTC JavaScript application that provides high quality, secure and scalable video meeting spaces.
