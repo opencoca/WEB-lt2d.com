@@ -1,0 +1,346 @@
+<html>
+
+<head>
+  <title>LATI2UDE</title>
+  <meta name="LATI2UDE" content="Video Chat">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/modal.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <style>
+    body {
+      border:none;
+      margin:none;
+      padding: none;
+      overflow: hidden;
+    }
+
+    #snap {
+      border:none;
+      margin:none;
+      padding: none;
+      position: absolute;
+      top: 50px;
+      left: 0px;
+      transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+    }
+
+    #jitsi {
+      border:none;
+      margin:none;
+      padding: none;
+      position: fixed;
+      top: 50px;
+      left: 100vw;
+      min-width:526px;
+      background-color: #333;
+      transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+	    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+    }
+
+    #open {
+      position: fixed;
+      top: 5px;
+      right: 1vw;
+      width: 200px;
+      z-index: 99999;
+    }
+
+    .dot {
+      height: 28px;
+      width: 28px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      margin-left: 10px;
+    }
+
+    #content {
+      min-width:945px;        /* Suppose you want minimum width of 1000px */
+      width: auto !important;  /* Firefox will set width as auto */
+    }
+
+    #menuToggle {
+  	  display: block;
+  	  position: fixed;
+  	  top: 14px;
+  	  left: 10px;
+  	  z-index: 199999;
+  	  user-select: none;
+  	}
+
+  	#menuToggle input {
+  	  display: block;
+  	  width: 40px;
+  	  height: 32px;
+  	  position: absolute;
+  	  top: -7px;
+  	  left: -5px;
+  	  cursor: pointer;
+  	  opacity: 0;
+  	  /* hide this */
+  	  z-index: 2;
+  	  /* and place it over the hamburger */
+  	  -webkit-touch-callout: none;
+  	}
+  	/*
+  	 * hamburger
+  	 */
+
+  	#menuToggle span {
+  	  display: block;
+  	  width: 33px;
+  	  height: 4px;
+  	  margin-bottom: 5px;
+  	  position: relative;
+  	  background: #cdcdcd;
+  	  border-radius: 3px;
+  	  z-index: 1;
+  	  transform-origin: 4px 0px;
+  	  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+  	    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+  	}
+
+  	#menuToggle span:first-child {
+  	  transform-origin: 0% 0%;
+  	}
+
+  	#menuToggle span:nth-last-child(2) {
+  	  transform-origin: 0% 100%;
+  	}
+
+  	#menuToggle input:checked ~ span {
+  	  opacity: 1;
+  	  transform: rotate(45deg) translate(-2px, -1px);
+  	  background: #232323;
+  	}
+
+  	#menuToggle input:checked ~ span:nth-last-child(3) {
+  	  opacity: 0;
+  	  transform: rotate(0deg) scale(0.2, 0.2);
+  	}
+
+  	#menuToggle input:checked ~ span:nth-last-child(2) {
+  	  transform: rotate(-45deg) translate(0, -1px);
+  	}
+
+  	#menu {
+  	  position: absolute;
+  	  width: 33vw;
+      height: 100vh;
+      overflow: scroll;
+  	  margin: -100px 0 0 -50px;
+  	  padding: 80px;
+  	  padding-top: 125px;
+  	  background: #ededed;
+  	  list-style-type: none;
+  	  -webkit-font-smoothing: antialiased;
+  	  /* stop flickering of text in safari */
+  	  transform-origin: 0% 0%;
+  	  transform: translate(-100%, 0);
+  	  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  	}
+
+  	#menu li {
+  	  padding: 0.2em  0;
+  	  font-size: 1.2em;
+  	}
+
+  	/*
+  	 * And let's slide it in from the left
+  	 */
+
+  	#menuToggle input:checked ~ ul {
+  	  transform: none;
+  	}
+  </style>
+  
+</head>
+
+
+<body>
+<nav role="navigation">
+  <div id="menuToggle">
+    <!--
+    hidden checkbox is used as click reciever,
+    so you can use the :checked selector on it.
+    -->
+    <input type="checkbox" />
+
+    <!--
+    Some spans to act as a hamburger.
+
+    They are acting like a real hamburger,
+    not that McDonalds stuff.
+    -->
+    <span></span>
+    <span></span>
+    <span></span>
+    <ul id="menu">
+      <a href="?count=1&meet=lt2d-hall&app=wbo.ophir.dev/boards/LT2D-UpperHall">
+        <li>Hall</li>
+      </a>
+
+      <a href="?count=0&meet=lt2d-lower-hall&app=wbo.ophir.dev/boards/LT2D-LowerHall">
+        <li>Lower Hall</li>
+      </a>
+      <a href="?count=1&meet=lt2d-Biblio&app=wbo.ophir.dev/boards/LT2D-Biblio">
+        <li>Library - Biblio</li>
+      </a>
+
+      <a href="?count=0&meet=lt2d-TechSupport&app=wbo.ophir.dev/boards/LT2D-TechSupport">
+        <li>Tech Support - Support technique</li>
+      </a>
+    </ul>
+  </div>
+</nav>
+
+<div id="content">
+  <div id="header">
+    <span class="connState"></span>
+
+    <!--<button id="start-togetherjs" type="button"
+     onclick="TogetherJS(this); return false"
+     data-end-togetherjs-html="End TogetherJS">
+      Start TogetherJS
+    </button>-->
+
+    <div id="save"></div>
+
+    <div id="instructionsClick">
+      <div id="logo"><img src="/assets/LogoIcon.png" alt="LATI2UDE logo" style="height: 37px; padding: 6px 6px 6px 6px; margin-left: 60px;" id="logoImg"/></div>
+    </div>
+
+
+
+    <div class="modal-container">
+      <input id="modal-toggle" type="checkbox" unchecked>
+      <button>Onload Info</button>
+      <div class="modal-backdrop">
+        <div class="modal-content">
+          <label class="modal-close" for="modal-toggle">x</label>
+            Welcome To LT2D
+          <label class="modal-close button" for="modal-toggle">Close</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="open">
+    <a><img onclick="openWindowSide()" src="assets/tv.png" style="height:40px;" /></a>
+    <a href="https://meet.jit.si/LT2D-MainHall" target="meeting_iframe" class="dot" style="background-color: #FF0000;" id="dot1"></a>
+    <a href="https://meet.jit.si/LT2D-MainHall-green" target="meeting_iframe" class="dot" style="background-color: #00FF00" id="dot2"></a>
+    <a href="https://meet.jit.si/LT@D-MainHall-blue" target="meeting_iframe" class="dot" style="background-color: #0000FF;" id="dot3"></a>
+  </div>
+
+  <div class="window">
+    <iframe allow="microphone; camera" style="width:100%; height:calc(100% - 50px); border:none" src="https://www.centrepreville.org/camp-f-a-q-troubleshooting/" id="snap" name="app_iframe"></iframe>
+
+    <iframe allow="microphone; camera" style="min-width:526px; width:40vw; height:calc(100% - 50px);" src="https://meet.jit.si/LT2D-MainHall#jitsi_meet_external_api_id=0&amp;config.requireDisplayName=true&amp;config.startAudioMuted=6&amp;config.disableAudioLevels=true&amp;interfaceConfig.DISABLE_VIDEO_BACKGROUND=true" id="jitsi" name="meeting_iframe">
+      <p>Your browser does not support iframes.</p>
+    </iframe>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  var count = 0;
+  function openWindowSide() {
+    if (count%3 == 0) {
+      document.getElementById("jitsi").style.left = "0%"; 
+      document.getElementById("jitsi").style.width = "100%"; 
+      document.getElementById("snap").style.width = "0%";
+      document.getElementById("open").style.right = "1%"; 
+    }
+    else if (count%3 == 1){
+      document.getElementById("jitsi").style.left = "50%";
+      document.getElementById("jitsi").style.width = "50%";  
+      document.getElementById("snap").style.width = "50%"; 
+      document.getElementById("open").style.right = "1%"; 
+    }
+    else if (count%3 == 2){
+      document.getElementById("jitsi").style.left = "100%"; 
+      document.getElementById("snap").style.width = "100%"; 
+      document.getElementById("open").style.right = "1%"; 
+    }
+    window.dispatchEvent(new Event('resize'));
+    count += 1;
+  }
+
+
+  function getJsonFromUrl(url) {
+    if(!url) url = location.search;
+    var query = url.substr(1);
+    var result = {};
+    query.split("&").forEach(function(part) {
+      var item = part.split("=");
+      result[item[0]] = decodeURIComponent(item[1]);
+    });
+    return result;
+  }
+
+
+  //Parse window params
+  const urlParams = new URLSearchParams(window.location.search);
+
+  //Choose App
+  const appParam = urlParams.get('app');
+  if (appParam != null) {
+    var a  = document.createElement('a');
+    a.href = "https://" + appParam;
+    a.target = "app_iframe";
+    a.click();
+  }
+
+  //Choose Meeting
+  const meetParam = urlParams.get('meet');
+  if (meetParam != null) {
+    var meetSrc = "https://meet.jit.si/" + meetParam + "#jitsi_meet_external_api_id=0&amp;config.requireDisplayName=true&amp;config.startAudioMuted=6&amp;config.disableAudioLevels=true&amp;interfaceConfig.DISABLE_VIDEO_BACKGROUND=true";
+    var newMeetIframe ='\
+    <iframe allow="microphone; camera" style="min-width:526px; width:40vw; height:calc(100vh - 50px);" src="' + meetSrc +'" id="jitsi" name="meeting_iframe"> \
+      <p>Your browser does not support iframes.</p>\
+    </iframe> \
+    ';
+    document.getElementById('jitsi').outerHTML = newMeetIframe;
+    if (meetParam == "LT2D-Chess") {
+      document.getElementById("dot1").href = "https://meet.jit.si/" + meetParam;
+      document.getElementById("dot2").href = "https://meet.jit.si/" + meetParam + "-green";
+      document.getElementById("dot3").href = "https://meet.jit.si/" + meetParam + "-blue";
+    } else {
+      document.getElementById("dot1").href = "https://meet.jit.si/" + meetParam;
+      document.getElementById("dot2").href = "https://meet.jit.si/" + meetParam + "-green";
+      document.getElementById("dot3").href = "https://meet.jit.si/" + meetParam + "-blue";
+    }
+
+  }
+
+
+/*
+Cool Game For The Future!
++ "&app=gartic.io/"
++ "&app=deck.of.cards/play/5f0ca23753da083bf69ca7e6"
++ "&app=slither.io/"
+*/
+
+  //Choose Logo
+  const logoParam = urlParams.get('logo');
+  if (logoParam != null) {
+    document.getElementById('logoImg').src = logoParam;
+  }
+  
+
+  //Choose Load Opening State
+  const countParam = urlParams.get('count');
+  if (countParam != null) {
+    count = countParam;
+  }
+  openWindowSide();
+
+
+
+</script>
+</body>
+</html>
