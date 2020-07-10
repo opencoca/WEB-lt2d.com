@@ -19,6 +19,6 @@ staticrypt ./src/index.html \
   -t "Meet Freely" \
   -i "Veuillez entrer le mot de passe de cette semaine. // Please enter the password for this week." \
   -f ./staticrypt-gh-pages/cli/password_template.html \
-  -o ./html/index.html
+  -o ./html/space/template/index.html
 
 
