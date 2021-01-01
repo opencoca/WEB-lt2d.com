@@ -1,4 +1,5 @@
 @import "framework.less";
+@import "mixin.less";
 
 @font-face {
   font-family: Europa-bold;
@@ -14,21 +15,38 @@ body {
 }
 
 button, .notification {
- background-color:inherit;
+ background-color:transparent;
  border-radius: 7px; 
 }
+
+
 
 .is-info, .notification.is-info {
   background-color: #8530f1;
   color: #fff;
-  border-radius: 7px;
-  
+}
+
+.is-alert{
+  background-color: #F130AF;
+  color: #fff;
 }
 
 .hero{
   img{
     width: 45%;
   }
+}
+
+.call-out{
+  margin: 40px -10px;
+  height:8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h1, h2, h3{
+    color: #fff;
+  }
+  .gradient();
 }
 
 form{
