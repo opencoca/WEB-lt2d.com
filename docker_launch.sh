@@ -16,7 +16,7 @@ docker run  -d -P -p 80 \
   -e VIRTUAL_HOST=$PROJECT \
   -e COMMAND1="$COMMAND1" \
   -e COMMAND2="$COMMAND2" \
-  -v $PROJECTPATH/html/:/usr/share/nginx/html:ro \
+  -v $PROJECTPATH/dist/:/usr/share/nginx/html:ro \
   -e DHOME=$DHOME \
   -e PROJECT="${PROJECT//./_}" \
   -e PASSWORD=$PASSWORD \
