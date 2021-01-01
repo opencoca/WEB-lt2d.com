@@ -1,0 +1,56 @@
+# Build Process
+_Transform raw code into a browser-ready preview... offline_
+
+This package contains all of the original code ([src/](./src/)) and a custom build script with preprocessors. 
+
+## Installation
+
+Ensure you have a recent version of [node & npm](https://nodejs.org/en/download/) or [yarn](https://yarnpkg.com/en/docs/install) installed.
+
+All of the following steps run on the command line within this directory. You can substitute `yarn` for `nom` if you prefer to not run things concurently. 
+Install all the necessary packages:
+
+```
+yarn install
+```
+
+## Serve 
+
+Run a local server that will automatically compile your code & refresh when you save a change!
+
+```
+yarn serve
+```
+
+---
+
+## Build
+
+To build for distribution:
+
+```
+yarn build
+```
+
+All of the final output will be dropped into the [/dist/](./dist) folder.
+
+## Folder Structure
+
+```
+/exported-item/
+|-- /build/ - Build scripts
+|  |-- gulpfile.js - The tasks for the main build process
+|  |-- util.js - Utilities used by the tasks
+|
+|-- /src/ - Your code
+|  |-- index.template.html - The wrapper around your compiled HTML that includes any external stylesheets and scripts
+|  |-- index.partial.(html|pug|haml|...) - The raw HTML input or preprocessor equivalent
+|  |-- style.(css|scss|less|...) - The raw CSS input, or preprocessor equivalent
+|  |-- script.(js|ts|coffee|...) - The raw JavaScript input, or preprocessor equivalent
+|
+|-- /dist/ - The compiled output after running `npm run build`
+|  |-- index.html
+|  |-- script.js
+|  |-- style.css
+|
+```

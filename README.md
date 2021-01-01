@@ -14,11 +14,11 @@
 
 #### Requires https://github.com/robinmoisson/staticrypt
 
-staticrypt ./src/index.html \
+staticrypt ./src/space/template/index.html \
    password \
   -t "Meet Freely" \
   -i "Veuillez entrer le mot de passe de cette semaine. // Please enter the password for this week." \
   -f ./staticrypt-gh-pages/cli/password_template.html \
-  -o ./html/space/template/index.html
+  -o ./html/space/example/index.html
 
 
