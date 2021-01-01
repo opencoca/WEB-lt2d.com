@@ -10,7 +10,8 @@ Object.keys(tasks).forEach((key) => {
 });
 
 /*
- * Tasks loaded from package.json and converted into runnable task functions */
+ * Tasks loaded from package.json and converted into runnable task functions 
+ */
 const taskFns = Object.keys(tasks).reduce((obj, key) => {
   obj[key] = makeTask(tasks[key]);
   return obj;
@@ -45,10 +46,27 @@ function copyToDist() {
 }
 
 /*
+ *.Parse LESS styles
+ */
+const gulp = require('gulp');
+const gulpless = require('gulp-less');
+const gulpautoprefixer = require('gulp-autoprefixer');
+
+//Creating a Style task that convert LESS to CSS
+function less2css(){
+  var srcfile = './src/assets/style/style.less';
+  return gulp
+    .src(srcfile)
+    .pipe(gulpless())
+    .pipe(gulpautoprefixer({browsers: ['last 2 versions','>5%']}))
+    .pipe(gulp.dest(config.distDir));
+};
+
+/*
  * $ npm run build
  * The default build task, running these tasks in series.
  */
-const build = series(clean, copyToDist, ...orderedTasks);
+const build = series(clean, less2css, copyToDist, ...orderedTasks);
 
 module.exports = {
   default: build,

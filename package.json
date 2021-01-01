@@ -70,6 +70,8 @@
     }
   },
   "dependencies": {
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-less": "^4.0.1",
     "gulp-real-favicon": "^0.3.2"
   }
 }
