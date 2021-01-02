@@ -11,15 +11,17 @@
   src: url(https://raw.githack.com/matthova/the-button/master/src/client/fonts/europa-regular-webfont.ttf);
 }
 body {
-  font-family: Europa-bold;
+  font-family: Europa;
+  color: #717171;
+  background-color: #fff;
 }
 
 button, .notification {
- background-color:transparent;
- border-radius: 7px; 
+  background-color:transparent;
+  a {
+    border-radius: 7px;
+  }
 }
-
-
 
 .is-info, .notification.is-info {
   background-color: #8530f1;
@@ -32,14 +34,32 @@ button, .notification {
 }
 
 .hero{
+  h1,h2,h3{
+    font-family: Europa-bold;
+    color: #000;
+  }
   img{
     width: 45%;
   }
 }
 
+h3{
+  color: #480CE7;
+  font-size: 24px;
+}
+
+p{
+  font-size: 16px;
+}
 .wide{
   margin:  -20px;
   padding: 20px
+}
+
+.info{
+  img{
+    width: 20%;
+  }
 }
 
 .call-out{
@@ -59,6 +79,7 @@ button, .notification {
     border-radius: 7px !important;
     box-shadow: none;
     min-height: 2em;
+    min-width: 20%;
     margin-top: 2em;
     font-size: larger;
     font-weight: 800;
