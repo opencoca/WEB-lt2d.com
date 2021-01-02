@@ -1,5 +1,5 @@
 section.section
-  .container
+  .container.wide.shadowed
     nav.navbar.columns
       button.column.has-text-centered
         a.link(href='#grid')
@@ -32,11 +32,11 @@ section.section
         p Personalise rooms with whiteboards, books, videos and more.
   .container
     .columns
-      .column.hero.is-info.call-out
+      .column.hero.is-info.call-out.gradient
         .has-text-centered
           h1.notification Can virtual experiences spark joy and creativity? We think so!
           button
-            a.link.is-info(href='#form') Try it
+            a(href='#form') Try it
     .columns.has-text-centered
       .column
         img(src="/assets/Keys.svg")
@@ -52,6 +52,6 @@ section.section
         p Personalise rooms with whiteboards, books, videos and more.
   .container
     .columns
-      .column#form
-        form.notification.is-info
+      .column#form.call-out.last
+        form.notification
           script(type='text/javascript' src='//communication.openco.ca/form/generate.js?id=1')

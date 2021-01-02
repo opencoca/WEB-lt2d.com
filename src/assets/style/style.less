@@ -37,16 +37,41 @@ button, .notification {
   }
 }
 
+.wide{
+  margin:  -20px;
+  padding: 20px
+}
+
 .call-out{
   margin: 40px -10px;
-  height:8em;
+  height:33vh;
   display: flex;
   align-items: center;
   justify-content: center;
   h1, h2, h3{
     color: #fff;
   }
-  .gradient();
+  button{
+    background-color: #F130AF !important;
+    color: #FFF !important;
+    a{ color:#FFF}
+    border: none !important;
+    border-radius: 7px !important;
+    box-shadow: none;
+    min-height: 2em;
+    margin-top: 2em;
+    font-size: larger;
+    font-weight: 800;
+  }
+  &.gradient{
+    .gradient();
+  }
+  &.last{
+    background-color: #1A1944;
+    color:#FFF;
+    margin: 40px -10px 0px;
+    padding: 0;
+  }
 }
 
 form{
@@ -58,4 +83,16 @@ form fieldset {
   border-width: 1px;
   border-style: solid;
   border-radius: 3px;
+}
+
+form input[type="text"], form input[type="date"], form input[type="datetime"], form input[type="datetime-local"], form input[type="email"], form input[type="number"], form input[type="tel"], form input[type="search"], form input[type="time"], form input[type="url"], form input[type="password"], form textarea, form select {
+  background-color: #7F7EA5;
+  color: #FFF;
+  border-radius: 6px;
+  border-bottom: none
+}
+
+form button[type="submit"]{
+  margin: 0 25%;
+  width: 50%;
 }
