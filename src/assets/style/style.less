@@ -10,10 +10,17 @@
   font-family: Europa;
   src: url(https://raw.githack.com/matthova/the-button/master/src/client/fonts/europa-regular-webfont.ttf);
 }
+
 body {
   font-family: Europa;
   color: #717171;
   background-color: #fff;
+}
+
+.sticky{
+      position: sticky;
+      top: 0;
+      z-index: 10;
 }
 
 button, .notification {
@@ -64,7 +71,7 @@ p{
 
 .call-out{
   margin: 40px -10px;
-  height:33vh;
+  min-height:33vh;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,8 +1,8 @@
-section.section
+section.section.sticky#top
   .container.wide.shadowed
     nav.navbar.columns
       button.column.has-text-centered
-        a.link(href='#grid')
+        a(href="#top")
           img(src='/assets/Latitude_logotype.svg')
       button.column.has-text-centered
         a.link.is-info(href='#form') Try it
@@ -42,22 +42,27 @@ section.section
         h2.notification Just what you need, #[br.mobile-only] right when you need #[br.mobile-only] it.
     .columns.info.has-text-centered
       .column
-        img(src="/assets/Keys.svg")
-        h3 No links or invitations 
-        h3 to manage
-        p Get the key to your own, permanant virtual building!
+        img(src="/assets/Easy.svg")
+        h3 Easy-to-use
+        p Enjoy a space that is easy to access and easy to use ... for everyone
       .column
-        img(src="/assets/Spaces.svg")
-        h3 Interconnected
-        h3 rooms and spaces
+        img(src="/assets/Customisable.svg")
+        h3 Customisable
         p Create custom spaces and allow people to flow between them.
       .column
-        img(src="/assets/Apps.svg")
-        h3 Embedded content
-        h3 and apps
-        p Personalise rooms with whiteboards, books, videos and more.
+        img(src="/assets/Support.svg")
+        h3 Support
+        p Speak with a real person when something’s not right.
   .container
     .columns
       .column#form.call-out.last
         form.notification
+          div.hero.has-text-centered
+            h1.notification Get a 7-day free trial! #[br] No credit card #[br.mobile-only] required
+            p
+              | We'll hand over the keys to your own #[br.mobile-only]
+              | space that you can use as much as #[br.mobile-only]
+              | you’d like for 7 days. #[br.mobile-only]
+              | Use it right away and stay all day! #[br]
+
           script(type='text/javascript' src='//communication.openco.ca/form/generate.js?id=1')

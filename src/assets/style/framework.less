@@ -3,6 +3,11 @@ section, .section {
   max-width: 72em;
 }
 
+nav{
+    button:focus {
+        outline: none;
+      }
+  }
 
 
 .navbar .column{
@@ -17,7 +22,9 @@ section, .section {
 .hidden {
   visibility: hidden;
 }
-
+.abscent{
+  display:none !important;
+}
 figure,
 nav,
 section {
@@ -390,6 +397,13 @@ form {
     font-weight: 100;
     padding: 22px;
     margin: -20px -20px 20px -20px;
+  }
+
+  div{
+    max-width: 600px;
+    p{
+      padding: 2em 0;
+    }
   }
 
   botton:hover,
